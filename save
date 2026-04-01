@@ -1,0 +1,31 @@
+{
+    "info_hero": {
+        "name": "Мартышка Чича",
+        "hp": 83.545,
+        "max_hp": 83.545,
+        "parts": [
+            "arm",
+            "arm",
+            "head",
+            "body",
+            "legs",
+            "tail"
+        ],
+        "equip": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        "parts_important": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

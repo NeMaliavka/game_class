@@ -1,0 +1,85 @@
+{
+    "info_hero": {
+        "name": "Sdbvkdf,Kj",
+        "hp": 1.085,
+        "max_hp": 130.2,
+        "slots": [
+            {
+                "type": "arm",
+                "content": null,
+                "important": 0,
+                "урон на будущее": 0
+            },
+            {
+                "type": "arm",
+                "content": null,
+                "important": 0,
+                "урон на будущее": 0
+            },
+            {
+                "type": "arm",
+                "content": null,
+                "important": 0,
+                "урон на будущее": 0
+            },
+            {
+                "type": "arm",
+                "content": null,
+                "important": 0,
+                "урон на будущее": 0
+            },
+            {
+                "type": "head",
+                "content": null,
+                "important": 1,
+                "урон на будущее": 0
+            },
+            {
+                "type": "body",
+                "content": null,
+                "important": 1,
+                "урон на будущее": 0
+            },
+            {
+                "type": "legs",
+                "content": null,
+                "important": 1,
+                "урон на будущее": 0
+            }
+        ],
+        "inventory_size": 1,
+        "bags": [
+            [
+                "Паучья сумка",
+                15,
+                10,
+                "Супер-пупер сумка",
+                "Sdbvkdf,Kj",
+                [
+                    "Молодильное яблочко",
+                    "Молодильное яблочко",
+                    "Молодильное яблочко"
+                ],
+                3
+            ],
+            [
+                "Паучья сумка",
+                15,
+                10,
+                "Супер-пупер сумка",
+                "Sdbvkdf,Kj",
+                [],
+                0
+            ],
+            [
+                "Паучья сумка",
+                15,
+                10,
+                "Супер-пупер сумка",
+                "Sdbvkdf,Kj",
+                [],
+                0
+            ]
+        ]
+    }
+}
