@@ -8,10 +8,14 @@ class Hero(Character):
         self.exp = 0
         self.bonus_damage += 5
 
-    def fight(self,t):
-        super().fight(t)
-        if self.hp <= 5:
-            print('Вызываем метод с доп хилками')
+    def fight(self,t):        
+        if self.hp <= 5 and self.bags:
+            # вместо хода будем лечиться
+            pass
+            
+
+        else:
+            super().fight(t)
 
     def __str__(self):
         # Подсвечиваем имя золотым

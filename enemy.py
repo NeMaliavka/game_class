@@ -4,11 +4,8 @@ import random
 
 class Enemy(Character):
     def __init__(self, info_location='Тёмный лес'):
-        super().__init__()
-        self.race = random.choice(LOCATION[info_location][2])
-        self.base_hp = RACES[self.race]['hp']
-        self.base_damage = RACES[self.race]['damage']
-        self.base_defence = RACES[self.race]['defence']
+        #random.choice(LOCATION[info_location][2])
+        super().__init__(random.choice(LOCATION[info_location][2]))
 
     #@property
     def level(self):
@@ -23,7 +20,7 @@ class Enemy(Character):
         if self.name == 'Паук':
             t.base_hp -= self.damage # - defence_for_spider
             # механика начисления урона от яда
-            print(f'{self.name} Нанёс урон {t.name} В размере {self.damage}, у него осталось {t.hp}')
+            print(f'{self.name} Нанёс урон {t.name} В размере {self.damage}, у него осталось {t.hp if t.hp >0 else 0}')
         else:
            super().fight(t)
 

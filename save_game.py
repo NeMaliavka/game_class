@@ -3,9 +3,11 @@ import json
 def save_json(hero, list_enemy = None):
     table_load = {
         'info_hero':{'name': hero.name,
-                     'hp': hero.hp,
+                     'base_hp': hero.base_hp,
                      'max_hp': hero.max_hp,
                      'slots': hero.slots,
+                     'base_damage': hero.base_damage,
+                     'base_defence': hero.base_defence,
                      'inventory_size': hero.inventory_size,
                      'bags': [i.load_for_list() for i in hero.bags]
                     #  'parts': [slot['type'] for slot in hero.slots],
@@ -20,7 +22,7 @@ def save_json(hero, list_enemy = None):
         table_load['info_enemy'] = []
         for e in list_enemy:
             table_load['info_enemy'].append({
-                'hp': e.hp
+                'base_hp': e.base_hp
             })
     
     with open('save.json', 'w', encoding='utf-8') as file_json:

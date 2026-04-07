@@ -41,7 +41,7 @@ loc = list(LOCATION.keys())
 start= True
 count = 0
 
-while True:
+while start:
     count += 1
 
     if hero.hp > 0 and enemy.hp>0:
@@ -58,7 +58,9 @@ while True:
             time.sleep(1)
             print()
     else:
-        break
-print('Бой окончен!')
+        start = False
+else:
+    print('Бой окончен!')
    
+
 

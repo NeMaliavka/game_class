@@ -19,16 +19,17 @@ else
 class Character:
     '''doc.... '''
         
-    def __init__(self):
+    def __init__(self, race = 'Человек'):
         self.name = 'Гость'
+        self.race = race
         self.lvl = 1
-        self.base_hp = 1
+        self.base_hp = RACES[self.race]['hp']
         self.max_hp = self.hp # Добавляем максимум для расчета полоски
         
-        self.base_damage = 1 # основное
+        self.base_damage = RACES[self.race]['damage'] # основное
         self.speed = 1
         self.stamina = 1
-        self.base_defence = 1
+        self.base_defence = RACES[self.race]['defence']
 
         self.bonus_damage = 1 
         self.bonus_defence = 1
@@ -42,15 +43,15 @@ class Character:
 
     @property
     def damage(self):
-        return (1 + self.lvl/10) * self.base_damage + self.bonus_damage # 1 + 1/10 -> (1 + lvl/10) base_damage
+        return round((1 + self.lvl/10) * self.base_damage + self.bonus_damage, 2) # 1 + 1/10 -> (1 + lvl/10) base_damage
     #hero.damage
     @property
     def defence(self):
-        return (1 + self.lvl/20) * self.base_defence + self.bonus_defence # (1 + 1/20) *
+        return round((1 + self.lvl/20) * self.base_defence + self.bonus_defence, 2) # (1 + 1/20) *
 
     @property
     def hp(self):
-        return (1 + round(self.lvl/15, 2) + 0.015) * self.base_hp #0.07
+        return round((1 + round(self.lvl/15, 2) + 0.015) * self.base_hp, 2)#0.07
     
     def equip_armor(self, armors): # обмундирование полное
         trash = []
@@ -139,7 +140,9 @@ class Character:
                 print(F'{[i.view for i in self.bags]}')
                 self.inventory_size += 1
                 
-    def show_my_bags(self): # := set
+    def show_my_bags(self): # := set, *found_items = () + yield
+        # frozenset()
+        # complex() 
         if len(self.bags)>0:
             a = range(1, len(self.bags)+1)
             for i in a:
@@ -206,7 +209,9 @@ class Character:
         if actuall_damage <0:
             actuall_damage = 0
         t.base_hp -= actuall_damage
-        print(f'{self.name} нанёс урон {t.name} в размере {actuall_damage}. У него осталось {t.hp}')
+        t.base_hp = round(t.base_hp, 2)
+        
+        print(f'{self.name} нанёс урон {t.name} в размере {actuall_damage}. У него осталось {t.hp if t.hp>0 else 0}')
     
     def get_hp_bar(self):
         bar_length = 10
@@ -220,7 +225,7 @@ class Character:
         return f"[{bar}] {color}{current_hp}{END}/{self.max_hp}"
     
     def load_characters(self, data:dict):
-        for i in ['name', 'lvl', 'exp', 'max_hp', 'slots']:
+        for i in ['name', 'lvl', 'exp', 'max_hp','base_damage', 'base_defence', 'base_hp', 'slots']:
             if i in data:
                 setattr(self, i, data[i]) # hero.i = data[i]
         if data.get('bags'):#'bags' in data and len(data['bafs'])>0:
