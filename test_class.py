@@ -28,8 +28,11 @@ except (FileNotFoundError, JSONDecodeError):
 
 # print(hero.slots)
 hero.add_bag('Паучья сумка')
-hero.bags[0].add_item('Молодильное яблочко')
-print(hero.show_my_bags())
+for i in hero.bags:
+    i.add_item('Костяной шип')
+
+#hero.bags[2].add_item('Молодильное яблочко')
+print(hero.show_my_bags('Молодильное яблочко', 'Молодильное яблочко', 'Костяной шип' ))
 save_json(hero)
 
 enemy = Enemy()

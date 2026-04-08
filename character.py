@@ -140,18 +140,42 @@ class Character:
                 print(F'{[i.view for i in self.bags]}')
                 self.inventory_size += 1
                 
-    def show_my_bags(self): # := set, *found_items = () + yield
+    def show_my_bags(self, *found_items): # := set, *found_items = () + yield
         # frozenset()
         # complex() 
+
         if len(self.bags)>0:
-            a = range(1, len(self.bags)+1)
-            for i in a:
-                print(f'{i}. {self.bags[i-1].name}. В данной сумке свободного места: {self.bags[i-1].size - self.bags[i-1].show_param()} ')
-  
-            choice = input('Выберите номер сумки: ').replace(' ', '') #                  1           2   .strip() = '1           2'
-            if choice.isdigit() and int(choice) in a:
-                return self.bags[int(choice)-1].items                                 #                  1             .split() = [' ', ' ','1']
+            if not found_items:
+                a = range(1, len(self.bags)+1)
+                for i in a:
+                    print(f'{i}. {self.bags[i-1].name}. В данной сумке свободного места: {self.bags[i-1].size - self.bags[i-1].show_param()} ')
+    
+                choice = input('Выберите номер сумки: ').replace(' ', '') #                  1           2   .strip() = '1           2'
+                if choice.isdigit() and int(choice) in a:
+                    return self.bags[int(choice)-1] #.items    у меня есть сомнение, что надо скрывать items
+            else:
+                # отсортировать сумки
+                found_bags = {}
+                found_items = frozenset(found_items)
+                #print(found_bags)
+                for i in self.bags: # [obj1, obj2] obj1
+                    if matches:=[b for b in i.items if b in found_items]:
+                        matches = frozenset(matches)
+                        if matches in found_bags:
+                            found_bags[matches].append(self.bags.index(i))
+                        else:
+                            found_bags[matches] = [self.bags.index(i)]
+                # print(found_bags)
+                # print()
+                if len(found_bags)>0:
+                    for i in found_bags:
+                        for ind in found_bags[i]:
+                            print()
+                            print(f"{ind+1}.{self.bags[ind].name} хранит внутри себя искомые предметы: {', '.join(item for item in i)}")
+
+                #                              #                  1             .split() = [' ', ' ','1']
         return False                                                        #                  1           2   .replace('Авада Кедавра', '') = '12'
+    
 
     def game_char(self, race=None, prof=None):
 
