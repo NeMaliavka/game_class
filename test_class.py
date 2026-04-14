@@ -32,7 +32,24 @@ for i in hero.bags:
     i.add_item('Костяной шип')
 
 #hero.bags[2].add_item('Молодильное яблочко')
-print(hero.show_my_bags('Молодильное яблочко', 'Молодильное яблочко', 'Костяной шип' ))
+generation_data = hero.show_my_bags('Молодильное яблочко', 'Молодильное яблочко', 'Костяной шип' )
+# for i, b, s in generation_data:
+#     print(i, b, s)
+# try:
+#     print(generation_data.__next__())
+# except StopIteration:
+#     print()
+
+i, b, s = next(generation_data)
+print(i, b, s)
+print(next(generation_data))
+print(next(generation_data))
+print(next(generation_data))
+print(next(generation_data))
+i, b, s = next(generation_data,('пусто','',''))
+print(i, b, s)
+
+
 save_json(hero)
 
 enemy = Enemy()

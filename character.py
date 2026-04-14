@@ -170,8 +170,9 @@ class Character:
                 if len(found_bags)>0:
                     for i in found_bags:
                         for ind in found_bags[i]:
-                            print()
-                            print(f"{ind+1}.{self.bags[ind].name} хранит внутри себя искомые предметы: {', '.join(item for item in i)}")
+                            yield ind+1, self.bags[ind].name, ', '.join(item for item in i)
+                            # print()
+                            # print(f"{ind+1}.{self.bags[ind].name} хранит внутри себя искомые предметы: {', '.join(item for item in i)}")
 
                 #                              #                  1             .split() = [' ', ' ','1']
         return False                                                        #                  1           2   .replace('Авада Кедавра', '') = '12'

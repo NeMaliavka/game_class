@@ -1,5 +1,5 @@
 from character import Character
-from config import GOLD, RESET
+from config import GOLD, RESET, FOOD
 
 class Hero(Character):
     def __init__(self):
@@ -11,8 +11,16 @@ class Hero(Character):
     def fight(self,t):        
         if self.hp <= 5 and self.bags:
             # вместо хода будем лечиться
-            pass
-            
+            g = self.show_my_bags(self,FOOD.keys())
+            if g:
+                i, b, s = next(g | ('','',''))
+                i-=1
+                s = s.split(', ')# s list из str
+                # автоматическая подборка лучшей еды из имеющейся | ищем во всех сумках
+                set_item = set()
+                for item in s:
+                    pass
+                #sort_s = sorted(s, lambda:)           
 
         else:
             super().fight(t)
