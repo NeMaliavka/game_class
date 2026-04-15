@@ -31,6 +31,7 @@ def save_json(hero, list_enemy = None):
         # print(s)
 
 
+
 def load_json(file_name='save.json'):
     with open(file_name, 'r', encoding='utf-8') as f:
         data = json.load(f)

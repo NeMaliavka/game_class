@@ -152,10 +152,11 @@ class Character:
     
                 choice = input('Выберите номер сумки: ').replace(' ', '') #                  1           2   .strip() = '1           2'
                 if choice.isdigit() and int(choice) in a:
-                    return self.bags[int(choice)-1] #.items    у меня есть сомнение, что надо скрывать items
+                    yield self.bags[int(choice)-1], None, None #.items    у меня есть сомнение, что надо скрывать items
             else:
                 # отсортировать сумки
                 found_bags = {}
+                print(found_items, type(found_items))
                 found_items = frozenset(found_items)
                 #print(found_bags)
                 for i in self.bags: # [obj1, obj2] obj1
@@ -165,17 +166,20 @@ class Character:
                             found_bags[matches].append(self.bags.index(i))
                         else:
                             found_bags[matches] = [self.bags.index(i)]
-                # print(found_bags)
+                print(f' это найденные сумки: {found_bags}')
                 # print()
                 if len(found_bags)>0:
+                    print('упс')
                     for i in found_bags:
                         for ind in found_bags[i]:
                             yield ind+1, self.bags[ind].name, ', '.join(item for item in i)
                             # print()
                             # print(f"{ind+1}.{self.bags[ind].name} хранит внутри себя искомые предметы: {', '.join(item for item in i)}")
-
+                else:
+                    print('хорошо')
+                    yield False, False, False
                 #                              #                  1             .split() = [' ', ' ','1']
-        return False                                                        #                  1           2   .replace('Авада Кедавра', '') = '12'
+        yield False, False, False                                                        #                  1           2   .replace('Авада Кедавра', '') = '12'
     
 
     def game_char(self, race=None, prof=None):

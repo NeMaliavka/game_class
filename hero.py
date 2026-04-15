@@ -8,22 +8,25 @@ class Hero(Character):
         self.exp = 0
         self.bonus_damage += 5
 
-    def fight(self,t):        
-        if self.hp <= 5 and self.bags:
+    def fight(self,t):  
+        flag = False 
+        if self.hp <= 390 and self.bags:
             # вместо хода будем лечиться
-            g = self.show_my_bags(self,FOOD.keys())
-            if g:
-                i, b, s = next(g | ('','',''))
-                i-=1
-                s = s.split(', ')# s list из str
-                # автоматическая подборка лучшей еды из имеющейся | ищем во всех сумках
-                set_item = set()
-                for item in s:
-                    pass
-                #sort_s = sorted(s, lambda:)           
+            all_food = set()
+            best_food = ''
+            for i, b, s in self.show_my_bags(*FOOD.keys()):
+                if not i:
+                    continue
+                else:
+                    s = set(s.split(', '))
+                    all_food.update(s)
+                    flag = True
+            if flag:
+                # решили создать словарь с имеющейся едой и уже его подвернуть сортировке
+                # решили создать словарь с имеющейся едой и уже его подвернуть сортировке
+                return       
 
-        else:
-            super().fight(t)
+        super().fight(t)
 
     def __str__(self):
         # Подсвечиваем имя золотым
